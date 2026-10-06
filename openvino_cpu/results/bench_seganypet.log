@@ -1,0 +1,74 @@
+/workspace/seganypet/openvino_cpu/scripts/feasibility_seganypet.py:111: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+  torch.onnx.export(
+/workspace/seganypet/code/segment_anything/modeling/image_encoder3D.py:304: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if pad_h > 0 or pad_w > 0 or pad_d > 0:
+/workspace/seganypet/code/segment_anything/modeling/image_encoder3D.py:352: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  max_rel_dist = int(2 * max(q_size, k_size) - 1)
+/workspace/seganypet/code/segment_anything/modeling/image_encoder3D.py:352: TracerWarning: Converting a tensor to a Python integer might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  max_rel_dist = int(2 * max(q_size, k_size) - 1)
+/workspace/seganypet/code/segment_anything/modeling/image_encoder3D.py:354: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if rel_pos.shape[0] != max_rel_dist:
+/workspace/seganypet/code/segment_anything/modeling/image_encoder3D.py:366: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  q_coords = torch.arange(q_size)[:, None] * max(k_size / q_size, 1.0)
+/workspace/seganypet/code/segment_anything/modeling/image_encoder3D.py:367: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  k_coords = torch.arange(k_size)[None, :] * max(q_size / k_size, 1.0)
+/workspace/seganypet/code/segment_anything/modeling/image_encoder3D.py:368: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  relative_coords = (q_coords - k_coords) + (k_size - 1) * max(q_size / k_size, 1.0)
+/workspace/seganypet/code/segment_anything/modeling/image_encoder3D.py:335: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if Hp > H or Wp > W or Dp > D:
+Building vit_b_ori (random init)...
+params=100.5M build=0.9s rss=680.8MB
+CPU forward: image_encoder only...
+encoder out=(1, 384, 8, 8, 8) t=3.17s rss=1815.2MB
+CPU forward: prompt_encoder + mask_decoder...
+masks=(1, 1, 32, 32, 32) iou=(1, 1) t=0.02s
+ONNX export: image_encoder...
+ONNX OK size=371.9MB
+OpenVINO convert image_encoder...
+OV convert+infer OK t_infer=0.78s
+Wrote /workspace/seganypet/openvino_cpu/results/feasibility_seganypet.json
+{
+  "path": "SegAnyPET",
+  "model": "vit_b_ori (img_size=128)",
+  "device": "cpu",
+  "weights": "random_init (license-blocked: no HF download/redistribution)",
+  "box_only": true,
+  "non_target": true,
+  "build_s": 0.94,
+  "nparams": 100509232,
+  "rss_after_build_mb": 680.8,
+  "encoder_forward_s": 3.17,
+  "encoder_out_shape": [
+    1,
+    384,
+    8,
+    8,
+    8
+  ],
+  "rss_after_encoder_mb": 1815.2,
+  "decoder_forward_s": 0.02,
+  "mask_shape": [
+    1,
+    1,
+    32,
+    32,
+    32
+  ],
+  "iou_shape": [
+    1,
+    1
+  ],
+  "cpu_smoke": "PASS",
+  "openvino": {
+    "onnx_export_s": 6.85,
+    "onnx_path": "/workspace/seganypet/openvino_cpu/artifacts/seganypet_image_encoder.onnx",
+    "onnx_size_mb": 371.9,
+    "onnx_export": "PASS",
+    "convert_s": 3.07,
+    "ir_path": "/workspace/seganypet/openvino_cpu/artifacts/seganypet_image_encoder.xml",
+    "convert": "PASS",
+    "infer_s": 0.78,
+    "status": "PASS"
+  },
+  "rss_peak_mb": 5562.5
+}

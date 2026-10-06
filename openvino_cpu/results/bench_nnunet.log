@@ -1,0 +1,59 @@
+/workspace/seganypet/openvino_cpu/scripts/feasibility_nnunet.py:111: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+  torch.onnx.export(
+/workspace/seganypet/.venv/lib/python3.13/site-packages/torch/onnx/_internal/torchscript_exporter/symbolic_opset9.py:2809: UserWarning: ONNX export mode is set to TrainingMode.EVAL, but operator 'instance_norm' is set to train=True. Exporting with train=True.
+  symbolic_helper.check_training_mode(use_input_stats, "instance_norm")
+Building PlainConvUNet (nnUNetv2 3d_fullres heuristic)...
+params=31.2M (paper ~31.2M) build=0.2s
+CPU forward...
+out=(1, 1, 96, 128, 128) t=1.956s rss=1768.8MB
+ONNX export...
+ONNX OK 124.8MB
+OpenVINO convert + infer...
+OV OK latency_mean=0.2686s dice=0.996688 mae=4.637e-03
+Wrote /workspace/seganypet/openvino_cpu/results/feasibility_nnunet.json
+{
+  "path": "Foundation-Model-for-PET-CT / nnUNetV2-3d_fullres PlainConvUNet",
+  "device": "cpu",
+  "weights": "random_init (license-blocked: no Dropbox download/redistribution)",
+  "input_shape": [
+    1,
+    2,
+    96,
+    128,
+    128
+  ],
+  "box_only": true,
+  "non_target": true,
+  "build_s": 0.18,
+  "nparams": 31195653,
+  "rss_after_build_mb": 340.7,
+  "forward_s": 1.956,
+  "output_shape": [
+    1,
+    1,
+    96,
+    128,
+    128
+  ],
+  "rss_after_forward_mb": 1768.8,
+  "cpu_smoke": "PASS",
+  "dice_vs_reference_same_run": 1.0,
+  "dice_note": "identity check (same random weights, two forwards); not pretrained fidelity",
+  "openvino": {
+    "onnx_export": "PASS",
+    "onnx_export_s": 2.66,
+    "onnx_size_mb": 124.8,
+    "convert": "PASS",
+    "convert_s": 0.7,
+    "latency_s_mean": 0.2686,
+    "latency_s_std": 0.024,
+    "latency_s_min": 0.241,
+    "n_runs": 5,
+    "dice_vs_torch": 0.996688,
+    "max_abs_diff": 1.320648193359375,
+    "mae": 0.004636895685394323,
+    "status": "PASS"
+  },
+  "dice_ov_vs_torch": 0.996688,
+  "rss_peak_mb": 3390.4
+}

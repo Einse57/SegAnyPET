@@ -1,0 +1,7 @@
+.venv/
+openvino_cpu/artifacts/
+*.onnx
+*.xml
+*.bin
+__pycache__/
+*.pyc

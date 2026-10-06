@@ -1,0 +1,8 @@
+{
+  "dice_ov_vs_torch_encoder_channelmean": 0.536585,
+  "mae": 0.010694156400859356,
+  "max_abs_diff": 0.08081710338592529,
+  "cosine": 0.9999057093574116,
+  "latency_s_mean": 0.9411,
+  "note": "encoder-only agreement; random init; box-only"
+}

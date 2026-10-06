@@ -1,0 +1,46 @@
+{
+  "path": "Foundation-Model-for-PET-CT / nnUNetV2-3d_fullres PlainConvUNet",
+  "device": "cpu",
+  "weights": "random_init (license-blocked: no Dropbox download/redistribution)",
+  "input_shape": [
+    1,
+    2,
+    96,
+    128,
+    128
+  ],
+  "box_only": true,
+  "non_target": true,
+  "build_s": 0.18,
+  "nparams": 31195653,
+  "rss_after_build_mb": 340.7,
+  "forward_s": 1.956,
+  "output_shape": [
+    1,
+    1,
+    96,
+    128,
+    128
+  ],
+  "rss_after_forward_mb": 1768.8,
+  "cpu_smoke": "PASS",
+  "dice_vs_reference_same_run": 1.0,
+  "dice_note": "identity check (same random weights, two forwards); not pretrained fidelity",
+  "openvino": {
+    "onnx_export": "PASS",
+    "onnx_export_s": 2.66,
+    "onnx_size_mb": 124.8,
+    "convert": "PASS",
+    "convert_s": 0.7,
+    "latency_s_mean": 0.2686,
+    "latency_s_std": 0.024,
+    "latency_s_min": 0.241,
+    "n_runs": 5,
+    "dice_vs_torch": 0.996688,
+    "max_abs_diff": 1.320648193359375,
+    "mae": 0.004636895685394323,
+    "status": "PASS"
+  },
+  "dice_ov_vs_torch": 0.996688,
+  "rss_peak_mb": 3390.4
+}
