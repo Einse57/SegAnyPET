@@ -1,0 +1,54 @@
+{
+  "path": "SegAnyPET",
+  "model": "vit_b_ori (img_size=128)",
+  "device": "cpu",
+  "weights": "random_init (license-blocked: no HF download/redistribution)",
+  "box_only": true,
+  "non_target": true,
+  "build_s": 0.94,
+  "nparams": 100509232,
+  "rss_after_build_mb": 680.8,
+  "encoder_forward_s": 3.17,
+  "encoder_out_shape": [
+    1,
+    384,
+    8,
+    8,
+    8
+  ],
+  "rss_after_encoder_mb": 1815.2,
+  "decoder_forward_s": 0.02,
+  "mask_shape": [
+    1,
+    1,
+    32,
+    32,
+    32
+  ],
+  "iou_shape": [
+    1,
+    1
+  ],
+  "cpu_smoke": "PASS",
+  "openvino": {
+    "onnx_export_s": 6.85,
+    "onnx_path": "/workspace/seganypet/openvino_cpu/artifacts/seganypet_image_encoder.onnx",
+    "onnx_size_mb": 371.9,
+    "onnx_export": "PASS",
+    "convert_s": 3.07,
+    "ir_path": "/workspace/seganypet/openvino_cpu/artifacts/seganypet_image_encoder.xml",
+    "convert": "PASS",
+    "infer_s": 0.78,
+    "status": "PASS",
+    "agreement": {
+      "dice_ov_vs_torch_encoder_channelmean": 0.536585,
+      "mae": 0.010694156400859356,
+      "max_abs_diff": 0.08081710338592529,
+      "cosine": 0.9999057093574116,
+      "latency_s_mean": 0.9411,
+      "note": "encoder-only agreement; random init; box-only"
+    }
+  },
+  "rss_peak_mb": 5562.5,
+  "dice_ov_vs_torch": 0.536585
+}

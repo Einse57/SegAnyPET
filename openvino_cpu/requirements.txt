@@ -1,0 +1,14 @@
+# Pinned CPU feasibility environment (box-only). See requirements-lock.txt for full freeze.
+# Torch CPU wheels: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+torch==2.10.0
+torchvision==0.25.0
+openvino==2026.4.1
+onnx==1.20.1
+numpy
+scipy
+SimpleITK
+monai==1.6.1
+dynamic-network-architectures
+tqdm
+torchio
+edt
